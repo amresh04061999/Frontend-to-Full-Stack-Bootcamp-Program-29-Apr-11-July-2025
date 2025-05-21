@@ -1,13 +1,20 @@
 // JavaScript Fundamentals: Variables, Data Types, and Operators
 
 // 1. Variables
-// Variables are containers for storing data values. In JavaScript, there are three ways to declare variables:
+   /* Variable Naming Rules */
+// - Must start with a letter, underscore (_), or dollar sign ($)
+// - Cannot start with a number
+// - Can contain letters, numbers, underscores, or dollar signs
+// - Case-sensitive
+// - Cannot use reserved keywords
 
+// Variables are containers for storing data values. In JavaScript, there are three ways to declare variables:
 // `var` (older method)
 
 // Example
 var name = "John";
 var age = 30;
+
 
 /* Description */
 // -Function scoped (not block scoped)
@@ -36,12 +43,7 @@ const MAX_SIZE = 100;
 // - Must be initialized at declaration
 // - For objects and arrays, the content can be modified but not the reference
 
-   /* Variable Naming Rules */
-// - Must start with a letter, underscore (_), or dollar sign ($)
-// - Cannot start with a number
-// - Can contain letters, numbers, underscores, or dollar signs
-// - Case-sensitive
-// - Cannot use reserved keywords
+
 
 // Example Scope
 // Global scope
@@ -50,17 +52,21 @@ let globalVar = "I'm global";
 function myFunction() {
   // Function scope
   let functionVar = "I'm function-scoped";
+  console.log(globalVar);   // Accessible 
   
-  if (true) {
+  if (true) { 
+    console.log(functionVar); // Accessible
     // Block scope
     let blockVar = "I'm block-scoped";
     var notBlockVar = "I'm not block-scoped";
     console.log(blockVar); // Accessible
   }
-  console.log(notBlockVar); // Accessible
   console.log(blockVar); // Error: blockVar is not defined
+  console.log(notBlockVar); // Accessible
 }
-
+ console.log(globalVar); // Accessible
+ console.log(functionVar); // Error: functionVar is not defined
+console.log(notBlockVar); // Accessible
 
 //  2. Data Types : JavaScript has 8 basic data types:
 
@@ -79,17 +85,19 @@ let scientific = 1e6; // 1,000,000
 // Example
 let singleQuote = 'Hello';
 let doubleQuote = "World";
-let backticks = `Hello ${singleQuote}`;  // Template literals (ES6)
-
-let str4 = " Hello JavaScript World! ";
+let backticks = `Hello ${singleQuote} ${doubleQuote}`;  // Template literals (ES6)
+let singleQuote1 = 'Hello\nWorld' + singleQuote + ' ';  // Multiline string
+let str4 = " Hello JavaScript World! ";   
 let num4 = "5";
 let s = "apple banana apple";
 
+
+// Sting methods
 // 1. length
 console.log(str4.length); // 26
 
 // 2. charAt(index)
-console.log(str4.charAt(7)); // J
+console.log(str4.charAt(7)); // J   
 
 // 3. charCodeAt(index)
 console.log(str4.charCodeAt(7)); // 74
@@ -242,7 +250,7 @@ if (emptyValue === null) {
 
 // Case 4: null is falsy
 if (!emptyValue) {
-  console.log("null is treated as false in boolean context"); 
+  console.log("null is treated as false in boolean context");   
 }
 
 // Case 5: Type of null (this is a known JavaScript quirk)
@@ -393,7 +401,7 @@ let b2 = "5";
 
 // Regular comparison operators
 console.log(a2 > 3); // true
-console.log(a2 < 3); // fa2lse
+console.log(a2 < 3); // false
 console.log(a2 >= 5); // true
 console.log(a2 <= 4); // false
 
@@ -493,11 +501,9 @@ let name = user.profile?.name; // "John"
 
 
 // Spread and Rest Operators (...) - ES6
-javascript
 // Spread (expands arrays or objects)
 let arr1 = [1, 2, 3];
 let arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
-
 let obj1 = { x: 1, y: 2 };
 let obj2 = { ...obj1, z: 3 }; // { x: 1, y: 2, z: 3 }
 
@@ -508,7 +514,7 @@ function sum(...numbers) {
 console.log(sum(1, 2, 3, 4)); // 10
 
 
-// Destructuring Assignment - ES6
+//Destructuring Assignment - ES6
 javascript
 // Array destructuring
 let [a, b, c] = [1, 2, 3];
@@ -522,8 +528,6 @@ console.log(name, age); // John 30
 // 4. Type Coercion
 
 // JavaScript performs automatic type conversion when operators are applied to different types:
-
-javascript
 // String and number
 console.log("5" + 3); // "53" (number is converted to string)
 console.log("5" - 3); // 2 (string is converted to number)
@@ -541,36 +545,6 @@ console.log("0" === false); // false (different types)
 
 
 //  5. Common Operations and Examples
-// Working with Strings
-let text = "JavaScript is awesome";
-
-// Length
-console.log(text.length); // 21
-
-// Accessing characters
-console.log(text[0]); // "J"
-console.log(text.charAt(0)); // "J"
-
-// Finding substrings
-console.log(text.indexOf("Script")); // 4
-console.log(text.includes("awesome")); // true
-
-// Modifying strings
-console.log(text.toUpperCase()); // "JAVASCRIPT IS AWESOME"
-console.log(text.toLowerCase()); // "javascript is awesome"
-console.log(text.replace("awesome", "amazing")); // "JavaScript is amazing"
-
-// Extracting substrings
-console.log(text.substring(0, 10)); // "JavaScript"
-console.log(text.slice(11)); // "is awesome"
-
-// Splitting
-console.log(text.split(" ")); // ["JavaScript", "is", "awesome"]
-
-// Trimming
-let paddedText = "  Hello  ";
-console.log(paddedText.trim()); // "Hello"
-
 
 // Working with Numbers
 // Number methods
@@ -594,37 +568,241 @@ console.log(Math.sqrt(16)); // 4
 
 
 // Working with Arrays
-let fruits = ["Apple", "Banana", "Orange"];
 
-// Adding/removing elements
-fruits.push("Mango"); // Adds to end: ["Apple", "Banana", "Orange", "Mango"]
-fruits.pop(); // Removes from end: ["Apple", "Banana", "Orange"]
-fruits.unshift("Strawberry"); // Adds to beginning: ["Strawberry", "Apple", "Banana", "Orange"]
-fruits.shift(); // Removes from beginning: ["Apple", "Banana", "Orange"]
+// 1.push() – Add an element to the end of the array.
 
-// Finding elements
-console.log(fruits.indexOf("Banana")); // 1
-console.log(fruits.includes("Mango")); // false
+let fruits2 = ["Apple", "Banana"];
+fruits2.push("Orange");
+console.log(fruits2); // ["Apple", "Banana", "Orange"] Adds "Orange" at the end of the fruits array.
 
-// Transforming arrays
-let numbers = [1, 2, 3, 4, 5];
-let doubled = numbers.map(num => num * 2); // [2, 4, 6, 8, 10]
-let even = numbers.filter(num => num % 2 === 0); // [2, 4]
-let sum = numbers.reduce((total, num) => total + num, 0); // 15
 
-// Other useful methods
-console.log(fruits.join(", ")); // "Apple, Banana, Orange"
-console.log(fruits.slice(1, 3)); // ["Banana", "Orange"]
+// 2. pop() – Remove the last element from the array.
 
-fruits.forEach((fruit, index) => {
-  console.log(`${index}: ${fruit}`);
+let fruit3 = ["Apple", "Banana", "Orange"];
+fruit3.pop(); // One time one item remove
+console.log(fruit3); // ["Apple", "Banana"] Removes the last item "Orange"
+
+// 3.unshift() – Add an element to the beginning of the array.
+
+let fruits4 = ["Banana", "Orange"];
+fruits4.unshift("Apple");
+console.log(fruits4); // ["Apple", "Banana", "Orange"] Adds "Apple" to the beginning.
+  
+// 4. shift() – Remove the first element from the array.
+let fruit4 = ["Apple", "Banana", "Orange"];
+fruit4.shift();
+console.log(fruit4); // ["Banana", "Orange"] Removes the first item "Apple".
+
+// 5. includes() – Check if an item exists in the array.
+
+let fruit5 = ["Apple", "Banana"];
+console.log(fruit5.includes("Banana")); // true
+console.log(fruit5.includes("Mango"));  // false
+// Returns true if found, otherwise false.
+
+// 6. indexOf() – Get the first index of an item.
+let fruit6 = ["Apple", "Banana", "Orange", "Banana"];
+console.log(fruit6.indexOf("Banana")); // 1
+// Returns the index of the first "Banana".
+
+//  7. lastIndexOf() – Get the last index of an item.
+let fruits = ["Apple", "Banana", "Orange", "Banana"];
+console.log(fruits.lastIndexOf("Banana")); // 3  Returns the last occurrence index of "Banana"
+
+//  8. find() – Find the first element that matches a condition.
+
+let numbers = [1, 3, 5, 8, 10];
+let result5 = numbers.find(num => num > 5);
+console.log(result5); // 8  Returns first number greater than 5.
+
+
+// 9. findIndex() – Find the index of the first matching element.
+let numbers1 = [1, 3, 5, 8, 10];
+let index = numbers1.findIndex(num => num > 5);
+console.log(index); // 3  Returns index of first number greater than 8.
+
+// 10. forEach() – Loop through each element.
+let fruits6 = ["Apple", "Banana", "Orange"];
+  fruits6.forEach((fruits6, index) => {
+  console.log(`${index}: ${fruits6}`);
 });
+// 0: Apple
+// 1: Banana
+// 2: Orange
 
-// Array spread syntax
-let combinedArray = [...fruits, ...numbers]; // ["Apple", "Banana", "Orange", 1, 2, 3, 4, 5]
+// 11. map() – Transform each element in the array.
+let numbers3 = [1, 2, 3];
+let doubled = numbers3.map(num => num * 2);
+console.log(doubled); // [2, 4, 6] Each number is multiplied by 2. map() returns a new array.
 
+// 12. filter() – Return elements that match a condition.
+let numbers5 = [1, 2, 3, 4, 5];
+let even = numbers5.filter(num => num % 2 === 0);
+console.log(even); // [2, 4]  Only even numbers are returned.
+
+// 13. reduce() – Reduce array to a single value.
+let numbers4 = [1, 2, 3, 4];
+let sum = numbers4.reduce((total, num) => total + num, 0);
+console.log(sum); // 10 Adds all numbers together.
+
+// 14. some() – Returns true if any element matches.
+let numbers6 = [1, 2, 3, 4];
+console.log(numbers6.some(num => num > 3)); // true
+
+//  15. every() – Returns true if all elements match
+let number8 = [2, 4, 6];
+console.log(number8.every(num => num % 2 === 0)); // true
+
+// 16. slice(start, end) – Get a portion of the array.
+let fruitsD = ["Apple", "Banana", "Orange", "Mango"];
+let result8 = fruitsD.slice(1, 3);
+console.log(result8); // ["Banana", "Orange"] end index is not included.
+
+// 17. splice() – Add/remove items in-place.
+let fruitsT = ["Apple", "Banana", "Orange"];
+fruitsT.splice(1, 1, "Mango"); // Remove 1 at index 1, add "Mango"
+console.log(fruitsT); // ["Apple", "Mango", "Orange"]
+
+//  18. join() – Join array into a string.
+let fruitsG = ["Apple", "Banana", "Orange"];
+console.log(fruitsG.join(", ")); // "Apple, Banana, Orange"
+
+//  19. concat() – Combine two arrays.
+let a5 = [1, 2];
+let b5 = [3, 4];
+let combined = a5.concat(b5);
+console.log(combined); // [1, 2, 3, 4]
+
+// 20. flat() – Flatten nested arrays.
+let arr3 = [1, [2, 3], [4, [5]]];
+console.log(arr3.flat()); // [1, 2, 3, 4, [5]]
+console.log(arr3.flat(2)); // [1, 2, 3, 4, 5]
+
+//  21. reverse() – Reverse array in place.
+let arr4 = [1, 2, 3];
+arr4.reverse();
+console.log(arr4); // [3, 2, 1]
+
+// 22. sort() – Sort elements (lexical by default).
+
+let fruits11 = ["Banana", "Apple", "Orange"];
+fruits11.sort();
+console.log(fruits11); // ["Apple", "Banana", "Orange"]
+let numbers12 = [10, 2, 5];
+
+// Sorting numbers
+numbers12.sort((a, b) => a - b);
+console.log(numbers12); // [2, 5, 10]
+
+// 23. Spread Operator (...) – Copy or combine arrays.
+let arr11 = [1, 2];
+let arr14 = [3, 4];
+let combined1 = [...arr11, ...arr14];
+console.log(combined1); // [1, 2, 3, 4]
+
+
+// 24. Rest Parameter – Group remaining values into an array.
+function sum(...nums) {
+  return nums.reduce((total, n) => total + n, 0);
+}
+console.log(sum(1, 2, 3)); // 6
+// 25. Array Destructuring – Unpack values.
+
+let fruits12 = ["Apple", "Banana", "Orange"];
+let [first, second] = fruits12;
+console.log(first); // "Apple"
+console.log(second); // "Banana"
+
+// 26. fill() – Fill array with a static value.
+let arr15 = new Array(4).fill(0);
+console.log(arr15); // [0, 0, 0, 0]
+
+// 27. from() – Create array from iterable (e.g., string).
+let str1 = "hello";
+let chars = Array.from(str1);
+console.log(chars); // ["h", "e", "l", "l", "o"]
+
+// 28. isArray() – Check if value is an array.
+console.log(Array.isArray([1, 2, 3])); // true
+console.log(Array.isArray("hello")); // false
+  
+// 29. reduceRight()
+let nums = [1, 2, 3];
+let result12 = nums.reduceRight((a, b) => a - b);
+console.log(result12); // 0 => ((3 - 2) - 1)
+
+
+// 30.flatMap()
+let nums12 = [1, 2, 3];
+let result11 = nums12.flatMap(n => [n, n * 2]);
+console.log(result11); // [1, 2, 2, 4, 3, 6]
+
+// 31. copyWithin()
+let arr21 = [1, 2, 3, 4, 5];
+arr21.copyWithin(1, 3); 
+console.log(arr21); // [1, 4, 5, 4, 5]
+
+// 32. Array.of()
+let arr213 = Array.of(10, 20, 30);
+console.log(arr213); // [10, 20, 30]
+
+// 33. toReversed() (ES2023)
+let arr22 = [1, 2, 3];
+let reversed = arr22.toReversed();
+console.log(reversed); // [3, 2, 1]
+console.log(arr22);      // [1, 2, 3] - original is not changed
+
+
+// 34. toSorted() (ES2023)
+let arr212 = [3, 1, 2];
+let sorted = arr212.toSorted();
+console.log(sorted); // [1, 2, 3]
+console.log(arr212);    // [3, 1, 2]
+
+// 35. toSpliced() (ES2023)
+let arr221 = [1, 2, 3, 4];
+let newArr = arr221.toSpliced(1, 2);
+console.log(newArr); // [1, 4]
+console.log(arr221);    // [1, 2, 3, 4]
+
+// 36. with() (ES2023)
+let arr2121 = [1, 2, 3];
+let updated = arr2121.with(1, 99);
+console.log(updated); // [1, 99, 3]
+console.log(arr2121);     // [1, 2, 3]
+// 37. at() (ES2022)
+let arr23 = [1, 2, 3];
+console.log(arr23.at(1)); // 2
+console.log(arr23.at(-1)); // 3 (last element)
+
+// 38. entries() – Returns an iterator of key-value pairs.
+let arr24 = ["a", "b", "c"];      
+let iterator = arr24.entries();
+for (let [index, value] of iterator) {
+  console.log(index, value); // 0 "a", 1 "b", 2 "c"
+}
+// 39. keys() – Returns an iterator of keys.
+let arr25 = ["a", "b", "c"];
+let keysIterator = arr25.keys();
+for (let key of keysIterator) {
+  console.log(key); // 0, 1, 2
+}
+// 40. values() – Returns an iterator of values.
+let arr26 = ["a", "b", "c"];
+let valuesIterator = arr26.values();
+for (let value of valuesIterator) {
+  console.log(value); // "a", "b", "c"
+}
 
 // Working with Objects
+// 1. Creating an Object
+let person12 = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+
+//2. Nested Objects WITH Methods
 let person2= {
   firstName: "John",
   lastName: "Doe",
@@ -637,30 +815,123 @@ let person2= {
     return this.firstName + " " + this.lastName;
   }
 };
-
-// Accessing properties
+//  3. Accessing Properties
 console.log(person2.firstName); // "John"
 console.log(person2["lastName"]); // "Doe"
 console.log(person2.address.city); // "Anytown"
 console.log(person2.fullName()); // "John Doe"
 
-// Modifying objects
+//  4. Adding Properties  
+person2.email = "amresh1098@gmail.com"  
+console.log(person2.email); // "amresh1098@gmail.com"
+
+// 4.Modifying objects
 person2.age = 31;
 person2.email = "john@example.com"; // Adding new property
+delete person.age; // delete
 
-// Object methods
+// Object methods 
 console.log(Object.keys(person2)); // ["firstName", "lastName", "age", "address", "fullName", "email"]
 console.log(Object.values(person2)); // ["John", "Doe", 31, {...}, f, "john@example.com"]
 console.log(Object.entries(person2)); // [["firstName", "John"], ["lastName", "Doe"], ...]
+console.log(Object.assign({}, person2)); // Shallow copy of person2
+console.log(Object.assign({ age: 25 }, person2)); // Merge with new object
 
-// Spread syntax with objects
-let employee = {
-  ...person2,
-  employeeId: "E123",
-  department: "Engineering"
-};
 
-// Object destructuring with default values
-let { firstName, lastName, salary = 0 } = person;
-console.log(firstName, lastName, salary); // "John" "Doe" 0
+//  9. Object.assign()
+let target = { a: 1 };
+let source = { b: 2 };
+Object.assign(target, source);
+console.log(target); // { a: 1, b: 2 }
+
+// 10. Spread Syntax with Objects
+let person11= { name: "John", age: 25 };
+let employee = { ...person11, department: "IT" };
+console.log(employee); // { name: "John", age: 25, department: "IT" }
+
+// 11. Object Destructuring
+let user = { name: "Alice", age: 28 };
+let { name, age } = user;
+console.log(name); // "Alice"
+console.log(age);  // 28
+
+// 12. Destructuring with Default Values
+let person21= { name: "John" };
+let { name, salary = 50000 } = person21;
+console.log(salary); // 50000
+
+// 14. Object.freeze()
+// Prevents modification of object properties.
+let obj = { name: "Max" };
+Object.freeze(obj);
+obj.name = "John"; // ignored
+console.log(obj.name); // "Max"
+
+// 15. Object.seal()
+// Prevents adding/removing properties, but allows updating existing ones.
+
+let obj = { name: "Max" };
+Object.seal(obj);
+obj.name = "John"; // allowed
+delete obj.name;   // not allowed
+console.log(obj);  // { name: "John" }
+
+// 16. hasOwnProperty()
+
+let obj = { name: "Max" };
+console.log(obj.hasOwnProperty("name")); // true
+console.log(obj.hasOwnProperty("age")); // false
+// 
+// 17. Object.prototype.toString.call() (Type check)
+
+console.log(Object.prototype.toString.call({}));      // "[object Object]"
+console.log(Object.prototype.toString.call([]));      // "[object Array]"
+
+// 18. for...in loop (Iterate object properties)
+let obj = { a: 1, b: 2 };
+for (let key in obj) {
+  console.log(key, obj[key]);
+}
+// 19. Optional Chaining (?.)
+
+let user = { profile: { name: "Alice" } };
+console.log(user.profile?.name); // "Alice"
+console.log(user.address?.city); // undefined (doesn't throw error)
+
+// 20. Nullish Coalescing (??)
+
+let name = null;
+let displayName = name ?? "Guest";
+console.log(displayName); // "Guest"
+
+// 21. Short Property Names (ES6)
+
+let name = "Ravi";
+let age = 25;
+let user = { name, age };
+console.log(user); // { name: "Ravi", age: 25 }
+
+// 22. Shallow vs Deep Copy
+
+let original = { name: "John", address: { city: "Mumbai" } };
+let shallow = { ...original };
+shallow.address.city = "Delhi";
+console.log(original.address.city); // "Delhi" — it's a shallow copy
+// To make a deep copy:
+
+let deep = JSON.parse(JSON.stringify(original));
+// 23. Object.fromEntries()
+
+let entries = [["name", "John"], ["age", 30]];
+let obj = Object.fromEntries(entries);
+console.log(obj); // { name: "John", age: 30 }
+
+// 24. Object.getOwnPropertyNames()
+let obj = { a: 1 };
+console.log(Object.getOwnPropertyNames(obj)); // ["a"]
+
+// 25. Object.hasOwn() (ES2022, alternative to hasOwnProperty)
+let obj = { a: 1 };
+console.log(Object.hasOwn(obj, "a")); // true
+
 
