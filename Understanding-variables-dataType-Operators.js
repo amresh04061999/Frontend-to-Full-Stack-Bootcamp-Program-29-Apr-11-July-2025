@@ -45,7 +45,7 @@ const MAX_SIZE = 100;
 
 
 
-// Example Scope
+// Example Variable Scope 
 // Global scope
 let globalVar = "I'm global";
 
@@ -292,7 +292,6 @@ console.log(Object.keys(user)); // ["name"]
 console.log(Object.getOwnPropertySymbols(user)); // [ Symbol(userID) ]
 
 
-
 //  7. BigInt (ES2020)
  // Example
 let bigNumber = 1234567890123456789012345678901234567890n;
@@ -300,290 +299,184 @@ let anotherBigNumber = BigInt("1234567890123456789012345678901234567890");
 
 
 //  Non-Primitive (Reference) Data Type
+
 //  8. Object
-// Object literal
-// Example
-let person1 = {
-  name: "John",
-  age: 30,
-  isStudent: false
+// Working with Objects
+
+// 1. Creating an Object
+let person12 = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
 };
 
-// Accessing properties
-console.log(person.name); // John
-console.log(person["age"]); // 30
+//2. Nested Objects WITH Methods
+let person2= {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "Anytown"
+  },
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+//  3. Accessing Properties
+console.log(person2.firstName); // "John"
+console.log(person2["lastName"]); // "Doe"
+console.log(person2.address.city); // "Anytown"
+console.log(person2.fullName()); // "John Doe"
 
+//  4. Adding Properties  
+person2.email = "amresh1098@gmail.com"  
+console.log(person2.email); // "amresh1098@gmail.com"
+
+// 5.Modifying objects
+person2.age = 31;
+console.log(person2.age); // 31
+delete person.age; // delete
+console.log(person2.age); // undefined
+
+// 6/Object methods 
+console.log(Object.keys(person2)); // ["firstName", "lastName", "age", "address", "fullName", "email"]
+console.log(Object.values(person2)); // ["John", "Doe", 31, {...}, f, "john@example.com"]
+console.log(Object.entries(person2)); // [["firstName", "John"], ["lastName", "Doe"], ...]
+console.log(Object.assign({}, person2)); // Shallow copy of person2
+console.log(Object.assign({ age: 25 }, person2)); // Merge with new object
+
+//  7. Object.assign()
+let target = { a: 1 };
+let source = { b: 2 };
+Object.assign(target, source);
+console.log(target); // { a: 1, b: 2 }
+
+// 8. Spread Syntax with Objects
+let person11= { name: "John", age: 25 };
+let employee = { ...person11, department: "IT" };
+console.log(employee); // { name: "John", age: 25, department: "IT" }
+
+// 9. Object Destructuring
+let user = { name: "Alice", age: 28 };
+let { name, age } = user;
+console.log(name); // "Alice"
+console.log(age);  // 28
+
+// 10. Destructuring with Default Values
+let person21= { name: "John" };
+let { name, salary = 50000 } = person21;
+console.log(salary); // 50000
+
+// 14. Object.freeze()
+// Prevents modification of object properties.
+let obj = { name: "Max" };
+Object.freeze(obj);
+obj.name = "John"; // ignored
+console.log(obj.name); // "Max"
+
+// 15. Object.seal()
+// Prevents adding/removing properties, but allows updating existing ones.
+
+let obj = { name: "Max" };
+Object.seal(obj);
+obj.name = "John"; // allowed
+delete obj.name;   // not allowed
+console.log(obj);  // { name: "John" }
+
+// 16. hasOwnProperty()
+
+let obj = { name: "Max" };
+console.log(obj.hasOwnProperty("name")); // true
+console.log(obj.hasOwnProperty("age")); // false
+// 
+// 17. Object.prototype.toString.call() (Type check)
+
+console.log(Object.prototype.toString.call({}));      // "[object Object]"
+console.log(Object.prototype.toString.call([]));      // "[object Array]"
+
+// 18. for...in loop (Iterate object properties)
+let obj = { a: 1, b: 2 };
+for (let key in obj) {
+  console.log(key, obj[key]);
+}
+// 19. Optional Chaining (?.)
+
+let user = { profile: { name: "Alice" } };
+console.log(user.profile?.name); // "Alice"
+console.log(user.address?.city); // undefined (doesn't throw error)
+
+// 20. Nullish Coalescing (??)
+
+let name = null;
+let displayName = name ?? "Guest";
+console.log(displayName); // "Guest"
+
+// 21. Short Property Names (ES6)
+
+let name = "Ravi";
+let age = 25;
+let user = { name, age };
+console.log(user); // { name: "Ravi", age: 25 }
+
+// 22. Shallow vs Deep Copy
+let original = { name: "John", address: { city: "Mumbai" } };
+let shallow = { ...original };
+shallow.address.city = "Delhi";
+console.log(original.address.city); // "Delhi" — it's a shallow copy
+let deep = JSON.parse(JSON.stringify(original));
+
+
+// 23. Object.fromEntries()
+let entries = [["name", "John"], ["age", 30]];
+let obj = Object.fromEntries(entries);
+console.log(obj); // { name: "John", age: 30 }
+
+// 24. Object.getOwnPropertyNames()
+let obj = { a: 1 };
+console.log(Object.getOwnPropertyNames(obj)); // ["a"]
+
+// 25. Object.hasOwn() (ES2022, alternative to hasOwnProperty)
+let obj = { a: 1 };
+console.log(Object.hasOwn(obj, "a")); // true
+
+
+
+// Array : Is one type of object the store multiple values in a single variable. 
+// Arrays can be single-dimensional (simple list) or multi-dimensional (array of arrays, like a table). 
+// Working with Arrays
 // Arrays (special type of object)
+// 1. Single-Dimensional Array
 let fruit = ["Apple", "Banana", "Orange"];
 console.log(fruits[0]); // Apple
 console.log(fruits.length); // 3
+// 2. Multi-Dimensional Array
+let matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+console.log(matrix[0][0]); // 1
+console.log(matrix[1][2]); // 6
+console.log(matrix[2][1]); // 8
 
-// Functions (also objects)
-function greet() {
-  return "Hello!";
-}
+// 1. Array.isArray() – Check if a value is an array.
+let arr1234 = [1, 2, 3];
+console.log(Array.isArray(arr1234)); // true
+console.log(Array.isArray("Hello")); // false
 
-// Date object
-let today = new Date();
-
-// Type Checking and Conversion
-//  Checking Types
-// Example
-console.log(typeof 42); // "number"
-console.log(typeof "hello"); // "string"
-console.log(typeof true); // "boolean"
-console.log(typeof undefined); // "undefined"
-console.log(typeof null); // "object" (this is a known bug)
-console.log(typeof {}); // "object"
-console.log(typeof []); // "object"
-console.log(typeof function(){}); // "function"
-
-
-//  Type Conversion
-// Example
-// String to Number
-let numStr = "42";
-let num2 = parseInt(numStr); // 42
-let num3 = +numStr; // 42
-
-// Number to String
-let num1 = 42;
-let str = String(num); // "42"
-let str2 = num.toString(); // "42"
-let str3 = num + ""; // "42"
-
-// To Boolean
-let bool1 = Boolean(1); // true
-let bool2 = !!0; // false
-
-
-//  3. Operators
-
-// Arithmetic Operators
-// Example
-let a1 = 10;
-let b1 = 3;
-
-console.log(a1 + b1); // 13 (a1ddition)
-console.log(a1 - b1); // 7 (Sub1tra1ction)
-console.log(a1 * b1); // 30 (Multiplica1tion)
-console.log(a1 / b1); // 3.3333... (Division)
-console.log(a1 % b1); // 1 (Modulus - rema1inder)
-console.log(a1 ** b1); // 1000 (Exponentiation - ES2016)
-
-// Increment and Decrement
-let c1= 5;
-console.log(c1++); // 5 (post-inc1rement: returns then inc1rements)
-console.log(c); // 6
-console.log(++c); // 7 (pre-increment: increments then returns)
-
-let d = 5;
-console.log(d--); // 5 (post-decrement)
-console.log(d); // 4
-console.log(--d); // 3 (pre-decrement)
-
-
-// Assignment Operators
-let x1 = 10; // Simple assignment
-
-// Compound assignment operators
-x1 += 5; // x1 = x1 + 5 (15)
-x1 -= 3; // x1 = x1 - 3 (12)
-x1 *= 2; // x1 = x1 * 2 (24)
-x1 /= 4; // x1 = x1 / 4 (6)
-x1 %= 4; // x1 = x1 % 4 (2)
-x1 **= 3; // x1 = x1 ** 3 (8)
-
-
-// Comparison Operators
-let a2= 5;
-let b2 = "5";
-
-// Regular comparison operators
-console.log(a2 > 3); // true
-console.log(a2 < 3); // false
-console.log(a2 >= 5); // true
-console.log(a2 <= 4); // false
-
-// Equality operators
-console.log(a2 == b2); // true (loose equality, converts types)
-console.log(a2 === b2); // false (strict equality, checks types and values)
-console.log(a2 != b2); // false (loose inequality)
-console.log(a2 !== b2); // true (strict inequality)
-
-
-// Logical Operators
-let x = 5;
-let y = 10;
-
-// AND operator
-console.log(x > 0 && y > 0); // true (both are true)
-console.log(x > 10 && y > 0); // false (one is false)
-
-// OR operator
-console.log(x > 0 || y > 0); // true (at least one is true)
-console.log(x > 10 || y > 0); // true (at least one is true)
-console.log(x > 10 || y > 20); // false (both are false)
-
-// NOT operator
-console.log(!true); // false
-console.log(!(x > 10)); // true
-
-// Short-circuit evaluation
-let result1 = true && "Hello"; // "Hello"
-let result2 = false && "Hello"; // false
-let result3 = true || "Hello"; // true
-let result4 = false || "Hello"; // "Hello"
-
-
-// Conditional (Ternary) Operator
-let age = 20;
-let message = age >= 18 ? "You can vote" : "Too young to vote";
-console.log(message); // "You can vote"
-
-
-// String Operators
-// Concatenation
-let firstName1 = "John";
-let lastName1 = "Doe";
-let fullName = firstName1 + " " + lastName1; // "John Doe"
-
-// ES6 template literals
-let greeting = `Hello, ${firstName1} ${lastName1}!`; // "Hello, John Doe!"
-
-
-// Bitwise Operators
-let a3 = 5;  // Binary: 101
-let b3 = 3;  // Binary: 011
-
-console.log(a3& b3);  // 1 (AND: 001)
-console.log(a3 | b3);  // 7 (OR: 111)
-console.log(a3 ^ b3);  // 6 (XOR: 110)
-console.log(~a3);     // -6 (NOT: inverts all bits)
-console.log(a3 << 1); // 10 (Left Shift: 1010)
-console.log(a3 >> 1); // 2 (Right Shift: 10)
-console.log(a3 >>> 1); // 2 (Zero-fill Right Shift)
-
-
-// Type Operators
-// instanceof (checks if object is an instance of a specific class)
-let arr = [1, 2, 3];
-console.log(arr instanceof Array); // true
-
-// in (checks if property exists in object)
-let person = { name: "John", age: 30 };
-console.log("name" in person); // true
-console.log("gender" in person); // false
-
-
-// Nullish Coalescing Operator (??) - ES2020
-// Returns right-hand side only when left is null or undefined
-let name = null;
-let username = name ?? "Guest"; // "Guest"
-
-let count = 0;
-let defaultCount = count ?? 10; // 0 (because 0 is not null or undefined)
-
-
-// Optional Chaining (?.) - ES2020
-let user = {
-  profile: {
-    name: "John"
-  }
-};
-
-// Without optional chaining
-// let city = user.address && user.address.city; // undefined
-
-// With optional chaining
-let city = user.address?.city; // undefined (no error)
-let name = user.profile?.name; // "John"
-
-
-// Spread and Rest Operators (...) - ES6
-// Spread (expands arrays or objects)
-let arr1 = [1, 2, 3];
-let arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
-let obj1 = { x: 1, y: 2 };
-let obj2 = { ...obj1, z: 3 }; // { x: 1, y: 2, z: 3 }
-
-// Rest (collects multiple elements)
-function sum(...numbers) {
-  return numbers.reduce((total, num) => total + num, 0);
-}
-console.log(sum(1, 2, 3, 4)); // 10
-
-
-//Destructuring Assignment - ES6
-javascript
-// Array destructuring
-let [a, b, c] = [1, 2, 3];
-console.log(a, b, c); // 1 2 3
-
-// Object destructuring
-let { name, age } = { name: "John", age: 30 };
-console.log(name, age); // John 30
-
-
-// 4. Type Coercion
-
-// JavaScript performs automatic type conversion when operators are applied to different types:
-// String and number
-console.log("5" + 3); // "53" (number is converted to string)
-console.log("5" - 3); // 2 (string is converted to number)
-console.log("5" * 3); // 15 (string is converted to number)
-
-// Boolean conversion
-console.log(5 + true); // 6 (true is converted to 1)
-console.log(5 + false); // 5 (false is converted to 0)
-
-// Equality operators and type coercion
-console.log("5" == 5); // true (type coercion happens)
-console.log("5" === 5); // false (no type coercion with ===)
-console.log("0" == false); // true (both convert to 0)
-console.log("0" === false); // false (different types)
-
-
-//  5. Common Operations and Examples
-
-// Working with Numbers
-// Number methods
-let num = 123.456;
-
-console.log(num.toFixed(2)); // "123.46" (string)
-console.log(num.toPrecision(4)); // "123.5" (string)
-console.log(num.toString()); // "123.456"
-console.log(parseInt("123.456")); // 123
-console.log(parseFloat("123.456")); // 123.456
-
-// Math object
-console.log(Math.round(4.7)); // 5
-console.log(Math.ceil(4.3)); // 5
-console.log(Math.floor(4.7)); // 4
-console.log(Math.random()); // Random number between 0 and 1
-console.log(Math.max(1, 5, 3)); // 5
-console.log(Math.min(1, 5, 3)); // 1
-console.log(Math.pow(2, 3)); // 8
-console.log(Math.sqrt(16)); // 4
-
-
-// Working with Arrays
-
+// 3. All Array Methods
 // 1.push() – Add an element to the end of the array.
-
 let fruits2 = ["Apple", "Banana"];
 fruits2.push("Orange");
 console.log(fruits2); // ["Apple", "Banana", "Orange"] Adds "Orange" at the end of the fruits array.
 
-
 // 2. pop() – Remove the last element from the array.
-
 let fruit3 = ["Apple", "Banana", "Orange"];
 fruit3.pop(); // One time one item remove
 console.log(fruit3); // ["Apple", "Banana"] Removes the last item "Orange"
 
 // 3.unshift() – Add an element to the beginning of the array.
-
 let fruits4 = ["Banana", "Orange"];
 fruits4.unshift("Apple");
 console.log(fruits4); // ["Apple", "Banana", "Orange"] Adds "Apple" to the beginning.
@@ -594,23 +487,21 @@ fruit4.shift();
 console.log(fruit4); // ["Banana", "Orange"] Removes the first item "Apple".
 
 // 5. includes() – Check if an item exists in the array.
-
 let fruit5 = ["Apple", "Banana"];
 console.log(fruit5.includes("Banana")); // true
-console.log(fruit5.includes("Mango"));  // false
-// Returns true if found, otherwise false.
+console.log(fruit5.includes("Mango"));  // false // Returns true if found, otherwise false.
+
 
 // 6. indexOf() – Get the first index of an item.
 let fruit6 = ["Apple", "Banana", "Orange", "Banana"];
-console.log(fruit6.indexOf("Banana")); // 1
-// Returns the index of the first "Banana".
+console.log(fruit6.indexOf("Banana")); // 1// Returns the index of the first "Banana".
+
 
 //  7. lastIndexOf() – Get the last index of an item.
 let fruits = ["Apple", "Banana", "Orange", "Banana"];
 console.log(fruits.lastIndexOf("Banana")); // 3  Returns the last occurrence index of "Banana"
 
 //  8. find() – Find the first element that matches a condition.
-
 let numbers = [1, 3, 5, 8, 10];
 let result5 = numbers.find(num => num > 5);
 console.log(result5); // 8  Returns first number greater than 5.
@@ -688,9 +579,9 @@ console.log(arr4); // [3, 2, 1]
 let fruits11 = ["Banana", "Apple", "Orange"];
 fruits11.sort();
 console.log(fruits11); // ["Apple", "Banana", "Orange"]
-let numbers12 = [10, 2, 5];
 
 // Sorting numbers
+let numbers12 = [10, 2, 5];
 numbers12.sort((a, b) => a - b);
 console.log(numbers12); // [2, 5, 10]
 
@@ -700,14 +591,13 @@ let arr14 = [3, 4];
 let combined1 = [...arr11, ...arr14];
 console.log(combined1); // [1, 2, 3, 4]
 
-
 // 24. Rest Parameter – Group remaining values into an array.
 function sum(...nums) {
   return nums.reduce((total, n) => total + n, 0);
 }
 console.log(sum(1, 2, 3)); // 6
-// 25. Array Destructuring – Unpack values.
 
+// 25. Array Destructuring – Unpack values.
 let fruits12 = ["Apple", "Banana", "Orange"];
 let [first, second] = fruits12;
 console.log(first); // "Apple"
@@ -770,6 +660,7 @@ let arr2121 = [1, 2, 3];
 let updated = arr2121.with(1, 99);
 console.log(updated); // [1, 99, 3]
 console.log(arr2121);     // [1, 2, 3]
+  
 // 37. at() (ES2022)
 let arr23 = [1, 2, 3];
 console.log(arr23.at(1)); // 2
@@ -794,144 +685,243 @@ for (let value of valuesIterator) {
   console.log(value); // "a", "b", "c"
 }
 
-// Working with Objects
-// 1. Creating an Object
-let person12 = {
-  firstName: "John",
-  lastName: "Doe",
-  age: 30
-};
+// Functions (also objects) More Learn about functionAndScope.js Flies 
+function greet() {
+  return "Hello!";
+}
 
-//2. Nested Objects WITH Methods
-let person2= {
-  firstName: "John",
-  lastName: "Doe",
-  age: 30,
-  address: {
-    street: "123 Main St",
-    city: "Anytown"
-  },
-  fullName: function() {
-    return this.firstName + " " + this.lastName;
+// Date object
+let today = new Date();
+
+// Type Checking and Conversion
+//  Checking Types
+// Example
+console.log(typeof 42); // "number"
+console.log(typeof "hello"); // "string"
+console.log(typeof true); // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof null); // "object" (this is a known bug)
+console.log(typeof {}); // "object"
+console.log(typeof []); // "object"
+console.log(typeof function(){}); // "function"
+
+//  Type Conversion
+// Example
+// String to Number
+let numStr = "42";
+let num2 = parseInt(numStr); // 42
+let num3 = +numStr; // 42
+
+// Number to String
+let num1 = 42;
+let str = String(num); // "42"
+let str2 = num.toString(); // "42"
+let str3 = num + ""; // "42"
+
+// To Boolean
+let bool1 = Boolean(1); // true
+let bool2 = !!0; // false
+
+//  3. Operators
+// Arithmetic Operators
+// Example
+let a1 = 10;
+let b1 = 3;
+
+console.log(a1 + b1); // 13 (a1ddition)
+console.log(a1 - b1); // 7 (Sub1tra1ction)
+console.log(a1 * b1); // 30 (Multiplica1tion)
+console.log(a1 / b1); // 3.3333... (Division)
+console.log(a1 % b1); // 1 (Modulus - rema1inder)
+console.log(a1 ** b1); // 1000 (Exponentiation - ES2016)
+
+// Increment and Decrement
+let c1= 5;
+console.log(c1++); // 5 (post-inc1rement: returns then inc1rements)
+console.log(c1); // 6
+console.log(++c); // 7 (pre-increment: increments then returns)
+
+let d = 5;
+console.log(d--); // 5 (post-decrement)
+console.log(d); // 4
+console.log(--d); // 3 (pre-decrement)
+
+
+// Assignment Operators
+let x1 = 10; // Simple assignment
+
+// Compound assignment operators
+x1 += 5; // x1 = x1 + 5 (15)
+x1 -= 3; // x1 = x1 - 3 (12)
+x1 *= 2; // x1 = x1 * 2 (24)
+x1 /= 4; // x1 = x1 / 4 (6)
+x1 %= 4; // x1 = x1 % 4 (2)
+x1 **= 3; // x1 = x1 ** 3 (8)
+
+
+// Comparison Operators
+let a2= 5;
+let b2 = "5";
+
+// Regular comparison operators
+console.log(a2 > 3); // true
+console.log(a2 < 3); // false
+console.log(a2 >= 5); // true
+console.log(a2 <= 4); // false
+
+// Equality operators
+console.log(a2 == b2); // true (loose equality, converts types)
+console.log(a2 === b2); // false (strict equality, checks types and values)
+console.log(a2 != b2); // false (loose inequality)
+console.log(a2 !== b2); // true (strict inequality)
+
+
+// Logical Operators
+let x = 5;
+let y = 10;
+
+// AND operator
+console.log(x > 0 && y > 0); // true (both are true)
+console.log(x > 10 && y > 0); // false (one is false)
+
+// OR operator
+console.log(x > 0 || y > 0); // true (at least one is true)
+console.log(x > 10 || y > 0); // true (at least one is true)
+console.log(x > 10 || y > 20); // false (both are false)
+
+// NOT operator
+console.log(!true); // false
+console.log(!(x > 10)); // true
+// Short-circuit evaluation
+let result1 = true && "Hello"; // "Hello"
+let result2 = false && "Hello"; // false
+let result3 = true || "Hello"; // true
+let result4 = false || "Hello"; // "Hello"
+
+
+// Conditional (Ternary) Operator
+let age = 20;
+let message = age >= 18 ? age >= 18 ? "You can vote" : "Too young to vote" : "Too young to vote";
+console.log(message); // "You can vote"
+
+
+// String Operators
+// Concatenation
+let firstName1 = "John";
+let lastName1 = "Doe";
+let fullName = firstName1 + " " + lastName1; // "John Doe"
+
+// ES6 template literals
+let greeting = `Hello, ${firstName1} ${lastName1}!`; // "Hello, John Doe!"
+
+
+// Bitwise Operators
+let a3 = 5;  // Binary: 101
+let b3 = 3;  // Binary: 011
+
+console.log(a3& b3);  // 1 (AND: 001)
+console.log(a3 | b3);  // 7 (OR: 111)
+console.log(a3 ^ b3);  // 6 (XOR: 110)
+console.log(~a3);     // -6 (NOT: inverts all bits)
+console.log(a3 << 1); // 10 (Left Shift: 1010)
+console.log(a3 >> 1); // 2 (Right Shift: 10)
+console.log(a3 >>> 1); // 2 (Zero-fill Right Shift)
+
+
+// Type Operators
+// instanceof (checks if object is an instance of a specific class)
+let arr = [1, 2, 3];
+console.log(arr instanceof Array); // true
+
+// in (checks if property exists in object)
+let person = { name: "John", age: 30 };
+console.log("name" in person); // true
+console.log("gender" in person); // false
+
+
+// Nullish Coalescing Operator (??) - ES2020
+// Returns right-hand side only when left is null or undefined
+let name1 = null;
+let username = name1 ?? "Guest"; // "Guest"
+
+let count = 0;
+let defaultCount = count ?? 10; // 0 (because 0 is not null or undefined)
+
+
+// Optional Chaining (?.) - ES2020
+let user = {
+  profile: {
+    name: "John"
   }
 };
-//  3. Accessing Properties
-console.log(person2.firstName); // "John"
-console.log(person2["lastName"]); // "Doe"
-console.log(person2.address.city); // "Anytown"
-console.log(person2.fullName()); // "John Doe"
 
-//  4. Adding Properties  
-person2.email = "amresh1098@gmail.com"  
-console.log(person2.email); // "amresh1098@gmail.com"
+// Without optional chaining
+ let city1 = user.address && user.address.city; // undefined
 
-// 4.Modifying objects
-person2.age = 31;
-person2.email = "john@example.com"; // Adding new property
-delete person.age; // delete
-
-// Object methods 
-console.log(Object.keys(person2)); // ["firstName", "lastName", "age", "address", "fullName", "email"]
-console.log(Object.values(person2)); // ["John", "Doe", 31, {...}, f, "john@example.com"]
-console.log(Object.entries(person2)); // [["firstName", "John"], ["lastName", "Doe"], ...]
-console.log(Object.assign({}, person2)); // Shallow copy of person2
-console.log(Object.assign({ age: 25 }, person2)); // Merge with new object
+// With optional chaining
+let city = user.address?.city; // undefined (no error)
+let name = user.profile?.name; // "John"
 
 
-//  9. Object.assign()
-let target = { a: 1 };
-let source = { b: 2 };
-Object.assign(target, source);
-console.log(target); // { a: 1, b: 2 }
+// Spread and Rest Operators (...) - ES6
 
-// 10. Spread Syntax with Objects
-let person11= { name: "John", age: 25 };
-let employee = { ...person11, department: "IT" };
-console.log(employee); // { name: "John", age: 25, department: "IT" }
+// Spread (expands arrays or objects)
+let arr1 = [1, 2, 3];
+let arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+let obj1 = { x: 1, y: 2 };
+let obj2 = { ...obj1, z: 3 }; // { x: 1, y: 2, z: 3 }
 
-// 11. Object Destructuring
-let user = { name: "Alice", age: 28 };
-let { name, age } = user;
-console.log(name); // "Alice"
-console.log(age);  // 28
-
-// 12. Destructuring with Default Values
-let person21= { name: "John" };
-let { name, salary = 50000 } = person21;
-console.log(salary); // 50000
-
-// 14. Object.freeze()
-// Prevents modification of object properties.
-let obj = { name: "Max" };
-Object.freeze(obj);
-obj.name = "John"; // ignored
-console.log(obj.name); // "Max"
-
-// 15. Object.seal()
-// Prevents adding/removing properties, but allows updating existing ones.
-
-let obj = { name: "Max" };
-Object.seal(obj);
-obj.name = "John"; // allowed
-delete obj.name;   // not allowed
-console.log(obj);  // { name: "John" }
-
-// 16. hasOwnProperty()
-
-let obj = { name: "Max" };
-console.log(obj.hasOwnProperty("name")); // true
-console.log(obj.hasOwnProperty("age")); // false
-// 
-// 17. Object.prototype.toString.call() (Type check)
-
-console.log(Object.prototype.toString.call({}));      // "[object Object]"
-console.log(Object.prototype.toString.call([]));      // "[object Array]"
-
-// 18. for...in loop (Iterate object properties)
-let obj = { a: 1, b: 2 };
-for (let key in obj) {
-  console.log(key, obj[key]);
+// Rest (collects multiple elements)
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
 }
-// 19. Optional Chaining (?.)
+console.log(sum(1, 2, 3, 4)); // 10
+//Destructuring Assignment - ES6
+// Array destructuring
+let [a, b, c] = [1, 2, 3]
+console.log(a, b, c); // 1 2 3
 
-let user = { profile: { name: "Alice" } };
-console.log(user.profile?.name); // "Alice"
-console.log(user.address?.city); // undefined (doesn't throw error)
+// Object destructuring
+let { name, age } = { name: "John", age: 30 };
+console.log(name, age); // John 30
 
-// 20. Nullish Coalescing (??)
 
-let name = null;
-let displayName = name ?? "Guest";
-console.log(displayName); // "Guest"
+// 4. Type Coercion
+// JavaScript performs automatic type conversion when operators are applied to different types:
+// String and number
+console.log("5" + 3); // "53" (number is converted to string)
+console.log("5" - 3); // 2 (string is converted to number)
+console.log("5" * 3); // 15 (string is converted to number)
 
-// 21. Short Property Names (ES6)
+// Boolean conversion
+console.log(5 + true); // 6 (true is converted to 1)
+console.log(5 + false); // 5 (false is converted to 0)
 
-let name = "Ravi";
-let age = 25;
-let user = { name, age };
-console.log(user); // { name: "Ravi", age: 25 }
+// Equality operators and type coercion
+console.log("5" == 5); // true (type coercion happens)
+console.log("5" === 5); // false (no type coercion with ===)
+console.log("0" == false); // true (both convert to 0)
+console.log("0" === false); // false (different types)
 
-// 22. Shallow vs Deep Copy
 
-let original = { name: "John", address: { city: "Mumbai" } };
-let shallow = { ...original };
-shallow.address.city = "Delhi";
-console.log(original.address.city); // "Delhi" — it's a shallow copy
-// To make a deep copy:
+//  5. Common Operations and Examples
+// Working with Numbers
+// Number methods
+let num = 123.456;
+console.log(num.toFixed(2)); // "123.46" (string)
+console.log(num.toPrecision(4)); // "123.5" (string)
+console.log(num.toString()); // "123.456"
+console.log(parseInt("123.456")); // 123
+console.log(parseFloat("123.456")); // 123.456
 
-let deep = JSON.parse(JSON.stringify(original));
-// 23. Object.fromEntries()
-
-let entries = [["name", "John"], ["age", 30]];
-let obj = Object.fromEntries(entries);
-console.log(obj); // { name: "John", age: 30 }
-
-// 24. Object.getOwnPropertyNames()
-let obj = { a: 1 };
-console.log(Object.getOwnPropertyNames(obj)); // ["a"]
-
-// 25. Object.hasOwn() (ES2022, alternative to hasOwnProperty)
-let obj = { a: 1 };
-console.log(Object.hasOwn(obj, "a")); // true
+// Math object
+console.log(Math.round(4.7)); // 5
+console.log(Math.ceil(4.3)); // 5
+console.log(Math.floor(4.7)); // 4
+console.log(Math.random()); // Random number between 0 and 1
+console.log(Math.max(1, 5, 3)); // 5
+console.log(Math.min(1, 5, 3)); // 1
+console.log(Math.pow(2, 3)); // 8
+console.log(Math.sqrt(16)); // 4
 
 
