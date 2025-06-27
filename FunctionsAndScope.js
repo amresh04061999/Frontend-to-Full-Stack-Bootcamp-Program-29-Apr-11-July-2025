@@ -1,5 +1,4 @@
-// JavaScript Functions and Scope - Complete Guide
-
+// JavaScript Functions and Scope
 //  1. Function Declarations
 
 //  Function Declaration Syntax
@@ -389,7 +388,7 @@ console.log(account.deposit(50)); // 150
 console.log(account.withdraw(30)); // 120
 
 
- Closure in Loops
+//  Closure in Loops
 // Problem: All functions share the same variable
 var functions = [];
 for (var i = 0; i < 3; i++) {
