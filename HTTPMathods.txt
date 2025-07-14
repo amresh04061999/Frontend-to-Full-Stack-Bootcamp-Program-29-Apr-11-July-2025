@@ -1,0 +1,58 @@
+What are HTTP Methods?
+HTTP methods define how a client (like a browser or app) communicates with a server to perform actions like retrieving, creating, updating, or deleting resources.
+
+🔹 1. GET
+Purpose: Retrieve data from the server.
+Request Body: ❌ Not allowed
+Use Case: Fetch user details, get a product list.
+
+Example:
+GET /users/123
+Effect: Does not change data — it only reads.
+
+🔹 2. POST
+Purpose: Create a new resource on the server.
+Request Body: ✅ Required (with data)
+Use Case: Register a new user, submit a form.
+
+Example:
+POST /users
+Body: { "name": "John", "email": "john@example.com" }
+Effect: Creates a new item.
+
+🔹 3. PUT
+Purpose: Update a resource entirely (full replacement).
+Request Body: ✅ Required (complete object)
+Use Case: Update all fields of a user profile.
+
+Example:
+PUT /users/123
+Body: { "name": "John", "email": "newemail@example.com" }
+Effect: Replaces the entire resource with the provided data.
+
+🔹 4. PATCH
+Purpose: Partially update an existing resource.
+Request Body: ✅ Required (only changed fields)
+Use Case: Update only the email of a user.
+
+Example:
+PATCH /users/123
+Body: { "email": "newemail@example.com" }
+Effect: Updates only specific fields.
+
+🔹 5. DELETE
+Purpose: Delete an existing resource from the server.
+Request Body: ❌ Usually not needed
+Use Case: Remove a user account.
+
+Example:
+DELETE /users/123
+Effect: Deletes the specified item.
+
+| **Method** | **Action**     |  **Request Body** |   **Use Case Example**     |     **Result**               |
+| ---------- | -------------- | ---------------- | ------------------------ | ----------------------------- |
+| **GET**    | Read           | ❌ No             | Get a user's profile     | Data fetched                  |
+| **POST**   | Create         | ✅ Yes            | Create a new user        | New resource added            |
+| **PUT**    | Full Update    | ✅ Yes            | Replace user data        | All fields updated            |
+| **PATCH**  | Partial Update | ✅ Yes            | Update only user’s email | Only specified fields updated |
+| **DELETE** | Remove         | ❌ No             | Delete a user            | Resource removed              |

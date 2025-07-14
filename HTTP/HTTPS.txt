@@ -1,0 +1,29 @@
+ 1. What is HTTP?
+HTTP stands for HyperText Transfer Protocol.
+It is a protocol used for transferring data (like HTML pages, images, videos) between a web browser (client) and a web server.
+It works on port 80 by default.
+It’s stateless, meaning it does not remember previous interactions.
+It is based on request-response:
+Client (browser) sends a request
+Server sends back a response
+📌 Example:
+When you type http://example.com, your browser makes an HTTP request to the server and displays the webpage.
+
+🔹 2. What is HTTPS?
+HTTPS stands for HyperText Transfer Protocol Secure.
+It is the secure version of HTTP.
+Uses SSL (Secure Socket Layer) or TLS (Transport Layer Security) to encrypt data.
+Works on port 443.
+Ensures data privacy, integrity, and authentication.
+📌 Example:
+When you access https://gmail.com, all your data (email, password) is encrypted and secure during transmission.
+
+🔹 3. HTTP vs HTTPS (Tabular Comparison)
+Feature	                             HTTP	                                          HTTPS
+Full Form                	HyperText Transfer Protocol	            HyperText Transfer Protocol Secure
+Port                                	80                                         	443
+Security	                         Not secure	                              Secure (uses SSL/TLS)
+Data Encryption                        	No	                                          Yes
+URL Format	                        http://                                          https://
+SEO Ranking	                          No impact	                             Google prefers HTTPS
+Use Case	                    Simple websites	                                   Banking, login, eCommerce

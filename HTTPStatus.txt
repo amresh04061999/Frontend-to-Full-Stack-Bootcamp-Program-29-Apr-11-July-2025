@@ -1,0 +1,52 @@
+🔹 1. 200 OK
+Category: Success
+Meaning: The request was successful, and the server returned the expected response.
+Common Use Case: When you successfully fetch data from a server.
+
+Example:http GET /users/123 → 200 OK
+
+🔹 2. 201 Created
+Category: Success
+Meaning: The request was successful, and a new resource was created as a result.
+Common Use Case: After submitting a form to create a new user or post.
+Example:
+POST /users → 201 Created
+
+🔹 3. 400 Bad Request
+Category: Client Error
+Meaning: The server could not understand the request due to malformed syntax or invalid data.
+Common Use Case: Missing fields, invalid JSON, or query parameters.
+
+Example:
+http POST /login with missing password → 400 Bad Request
+
+🔹 4. 401 Unauthorized
+Category: Client Error
+Meaning: Authentication is required, but none was provided or the credentials are invalid.
+Common Use Case: Accessing a protected route without a token or with an expired one.
+
+Example:
+http GET /dashboard without auth token → 401 Unauthorized
+
+🔹 5. 403 Forbidden
+Category: Client Error
+Meaning: The server understood the request, but refuses to authorize it. You do not have permission to access the resource.
+Common Use Case: A regular user trying to access an admin route.
+
+Example:
+http GET /admin → 403 Forbidden
+
+🔹 6. 404 Not Found
+Category: Client Error
+Meaning: The server can’t find the requested resource. It doesn’t exist or the URL is incorrect.
+Common Use Case: Typing a wrong URL or accessing a deleted record.
+
+Example:
+http GET /products/999 → 404 Not Found
+
+🔹 7. 500 Internal Server Error
+Category: Server Error
+Meaning: A generic server-side error. Something went wrong while processing the request.
+Common Use Case: Bug in server logic, failed database query, or unhandled exception.
+Example:
+http GET /orders → 500 Internal Server Error
